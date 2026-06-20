@@ -73,7 +73,7 @@
 /* ============================================
    网站整体背景 */
 #web_bg {
-    background: url('/img/anime-bg/bg.jpg') center/cover no-repeat fixed;
+    background: url('/img/anime-bg/bg.jpg') center/cover no-repeat fixed !important;
     position: fixed;
     top: 0;
     left: 0;
