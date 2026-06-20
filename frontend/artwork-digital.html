@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字幻境 - 梦境艺术</title>
+    <link rel="stylesheet" href="artwork.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="artwork-nav">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            返回画廊
+        </a>
+        <span class="nav-title">梦境艺术</span>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="artwork-container">
+        <!-- 作品主图 -->
+        <div class="artwork-hero">
+            <div class="artwork-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80"
+                     alt="数字幻境"
+                     class="artwork-main-image"
+                     onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80'">
+                <div class="image-overlay">
+                    <span class="artwork-tag">数字艺术 · 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品画廊 -->
+        <div class="artwork-gallery">
+            <div class="gallery-thumbnails">
+                <div class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=200&q=60" alt="霓虹灯">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=200&q=60" alt="赛博朋克">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1563089145-599997674d42?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=200&q=60" alt="数字矩阵">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=200&q=60" alt="代码雨">
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品信息 -->
+        <div class="artwork-content">
+            <div class="content-header">
+                <h1 class="artwork-title">数字幻境</h1>
+                <p class="artwork-subtitle">Digital Wonderland</p>
+                <div class="artwork-meta">
+                    <span class="meta-badge">🧑‍💻 数字艺术家</span>
+                    <span class="meta-badge">📅 2024</span>
+                    <span class="meta-badge">🖼️ 4096 × 4096 px</span>
+                    <span class="meta-badge">🎨 赛博黄 · 霓虹橙</span>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="artwork-description">
+                    <h2>✨ 作品简介</h2>
+                    <p>《数字幻境》是一件充满未来感的数字艺术作品。霓虹灯光、数据流、虚拟现实、人工智能——这些数字时代的元素在作品中交织融合，构建出一个令人目眩神迷的赛博空间。观者仿佛置身于《黑客帝国》与《银翼杀手》交汇的世界。</p>
+
+                    <h2>🎮 创作理念</h2>
+                    <p>我们生活在一个数字化的时代，虚拟与现实的界限日益模糊。这件作品探讨了数字技术对人类感知和认知的影响——当我们的生活越来越多地存在于屏幕之中，什么是真实？什么是虚拟？作品邀请观者思考数字时代的人类处境。</p>
+
+                    <h2>🖥️ 技术细节</h2>
+                    <p>作品使用了程序化生成技术，代码实时渲染出霓虹灯光的效果。数据流的视觉效果基于真实的网络流量数据，代码雨则是对经典电影的致敬。赛博朋克风格的城市景观使用了 3D 建模与后期合成技术。</p>
+                </div>
+
+                <div class="artwork-artist">
+                    <h2>👨‍🎨 关于艺术家</h2>
+                    <div class="artist-card">
+                        <div class="artist-avatar">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&q=60" alt="艺术家">
+                        </div>
+                        <div class="artist-info">
+                            <h3>梦境艺术工作室</h3>
+                            <p>专注于赛博朋克美学与数字文化研究，作品多次入选国际新媒体艺术展。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 相关作品推荐 -->
+        <div class="related-section">
+            <h2>🎨 相关作品推荐</h2>
+            <div class="related-grid">
+                <a href="artwork-quantum.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=60" alt="量子花园">
+                    <div class="related-info">
+                        <h3>量子花园</h3>
+                        <p>科技艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-dream.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=60" alt="梦境交织">
+                    <div class="related-info">
+                        <h3>梦境交织</h3>
+                        <p>抽象艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-light.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=400&q=60" alt="流光溢彩">
+                    <div class="related-info">
+                        <h3>流光溢彩</h3>
+                        <p>光影艺术</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="artwork.js"></script>
+</body>
+</html>

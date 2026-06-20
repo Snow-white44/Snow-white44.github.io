@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="梦境艺术 - 探索数字艺术的边界，用代码与算法创造视觉诗篇">
+    <meta name="theme-color" content="#020617">
+    <title>梦境艺术 - Dreamscape Art</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 加载屏幕 -->
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
+        <div class="loader-ring"></div>
+        <div class="loader-progress">
+            <div class="loader-progress-bar" id="loaderBar"></div>
+        </div>
+        <span class="loader-text">梦境艺术</span>
+    </div>
+
+    <!-- 粒子画布 -->
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+
+    <!-- 流体背景 -->
+    <div class="fluid-background" aria-hidden="true">
+        <div class="fluid-layer"></div>
+        <div class="fluid-layer"></div>
+        <div class="fluid-layer"></div>
+    </div>
+
+    <!-- 鼠标跟随光效 -->
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+    <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="glass-nav" role="navigation" aria-label="主导航">
+            <a href="#home" class="nav-brand">
+                <span class="brand-icon" aria-hidden="true">✦</span>
+                <span class="brand-text">梦境艺术</span>
+            </a>
+            <div class="nav-links" id="navLinks" role="menubar">
+                <a href="#home" class="nav-link active" role="menuitem">首页</a>
+                <a href="#gallery" class="nav-link" role="menuitem">画廊</a>
+                <a href="#classics" class="nav-link" role="menuitem">典藏</a>
+                <a href="#services" class="nav-link" role="menuitem">服务</a>
+                <a href="#about" class="nav-link" role="menuitem">关于</a>
+                <a href="#contact" class="nav-link" role="menuitem">联系</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="切换导航菜单" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+
+        <!-- 英雄区域 -->
+        <section id="home" class="hero-section" aria-label="首页欢迎">
+            <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+
+            <div class="hero-glow-rings" aria-hidden="true">
+                <div class="glow-ring ring-1"></div>
+                <div class="glow-ring ring-2"></div>
+                <div class="glow-ring ring-3"></div>
+            </div>
+
+            <div class="hero-content">
+                <h1 class="hero-title" data-text="梦境艺术">
+                    <span class="title-line" data-text="梦境">梦境</span>
+                    <span class="title-line accent" data-text="艺术">艺术</span>
+                </h1>
+                <div class="hero-subtitle-wrap" aria-live="polite" aria-atomic="true">
+                    <p class="hero-subtitle active">在数字与现实之间，创造无限可能</p>
+                    <p class="hero-subtitle">用代码编织视觉的诗篇</p>
+                    <p class="hero-subtitle">探索艺术与科技的交汇边界</p>
+                    <p class="hero-subtitle">让想象力在像素间自由流淌</p>
+                </div>
+                <div class="hero-cta">
+                    <button class="btn-primary" onclick="scrollToSection('gallery')">
+                        <span>探索作品</span>
+                        <div class="btn-particles"></div>
+                    </button>
+                    <button class="btn-secondary" onclick="scrollToSection('about')">
+                        <span>了解更多</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="floating-elements" aria-hidden="true">
+                <div class="float-geo geo-hex"></div>
+                <div class="float-geo geo-tri"></div>
+                <div class="float-geo geo-ring"></div>
+                <div class="float-geo geo-diamond"></div>
+                <div class="float-geo geo-circle-lg"></div>
+                <div class="float-geo geo-cross"></div>
+                <div class="float-geo geo-dot-cluster">
+                    <span></span><span></span><span></span>
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="float-geo geo-arc"></div>
+            </div>
+
+            <div class="scroll-indicator" aria-hidden="true">
+                <span class="scroll-text">向下滚动</span>
+                <div class="scroll-arrow">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- 画廊区域 -->
+        <section id="gallery" class="gallery-section" aria-label="艺术画廊">
+            <h2 class="section-title reveal">
+                <span class="title-decorator" aria-hidden="true">❖</span>
+                艺术画廊
+                <span class="title-decorator" aria-hidden="true">❖</span>
+            </h2>
+
+            <div class="gallery-grid">
+                <a href="artwork-star.html" class="gallery-item" data-tilt aria-label="查看星际漫游作品">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&q=70"
+                             alt="星际漫游 - 宇宙太空数字艺术作品"
+                             class="gallery-image"
+                             loading="lazy"
+                             onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=70'">
+                        <div class="item-info">
+                            <h3>星际漫游</h3>
+                            <p>宇宙太空 · 数字艺术</p>
+                            <span class="view-btn">查看详情 →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="artwork-dream.html" class="gallery-item large" data-tilt aria-label="查看梦境交织作品">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&q=70"
+                             alt="梦境交织 - 抽象流体色彩艺术"
+                             class="gallery-image"
+                             loading="lazy"
+                             onerror="this.src='https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&q=70'">
+                        <div class="item-info">
+                            <h3>梦境交织</h3>
+                            <p>抽象艺术 · 流体色彩</p>
+                            <span class="view-btn">查看详情 →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="artwork-time.html" class="gallery-item" data-tilt aria-label="查看时光碎片作品">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1501139083538-013ee33b3896?w=600&q=70"
+                             alt="时光碎片 - 时间主题摄影艺术"
+                             class="gallery-image"
+                             loading="lazy"
+                             onerror="this.src='https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=600&q=70'">
+                        <div class="item-info">
+                            <h3>时光碎片</h3>
+                            <p>时间主题 · 摄影艺术</p>
+                            <span class="view-btn">查看详情 →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="artwork-quantum.html" class="gallery-item" data-tilt aria-label="查看量子花园作品">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=70"
+                             alt="量子花园 - 科技微观世界艺术"
+                             class="gallery-image"
+                             loading="lazy"
+                             onerror="this.src='https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=600&q=70'">
+                        <div class="item-info">
+                            <h3>量子花园</h3>
+                            <p>科技艺术 · 微观世界</p>
+                            <span class="view-btn">查看详情 →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="artwork-digital.html" class="gallery-item large" data-tilt aria-label="查看数字幻境作品">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=70"
+                             alt="数字幻境 - 赛博朋克数字艺术"
+                             class="gallery-image"
+                             loading="lazy"
+                             onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=70'">
+                        <div class="item-info">
+                            <h3>数字幻境</h3>
+                            <p>赛博朋克 · 数字艺术</p>
+                            <span class="view-btn">查看详情 →</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="artwork-light.html" class="gallery-item" data-tilt aria-label="查看流光溢彩作品">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=600&q=70"
+                             alt="流光溢彩 - 光影色彩艺术"
+                             class="gallery-image"
+                             loading="lazy"
+                             onerror="this.src='https://images.unsplash.com/photo-1557683316-973673baf926?w=600&q=70'">
+                        <div class="item-info">
+                            <h3>流光溢彩</h3>
+                            <p>光影艺术 · 色彩绚烂</p>
+                            <span class="view-btn">查看详情 →</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 大师杰作典藏 -->
+        <section id="classics" class="classics-section" aria-label="大师杰作典藏">
+            <h2 class="section-title reveal">
+                <span class="title-decorator" aria-hidden="true">❖</span>
+                大师杰作典藏
+                <span class="title-decorator" aria-hidden="true">❖</span>
+            </h2>
+            <p class="section-subtitle reveal">致敬人类艺术史上最璀璨的明珠 · 版权归属原作者</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item classics-item" onclick="openLightbox('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1400&q=90','星月夜','文森特·梵高 · 1889 · 布面油画 · 纽约MoMA')">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&q=80"
+                             alt="星月夜 - 文森特·梵高 1889年 布面油画 现藏于纽约现代艺术博物馆"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="item-info">
+                            <h3>星月夜</h3>
+                            <p>文森特·梵高 · 1889</p>
+                            <span class="artwork-detail">布面油画 · 纽约MoMA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item large classics-item" onclick="openLightbox('https://images.unsplash.com/photo-1549490349-8643362247b5?w=1400&q=90','向日葵','文森特·梵高 · 1888 · 布面油画 · 慕尼黑新美术馆')">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1549490349-8643362247b5?w=800&q=80"
+                             alt="向日葵 - 文森特·梵高 1888年 布面油画 现藏于慕尼黑新美术馆"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="item-info">
+                            <h3>向日葵</h3>
+                            <p>文森特·梵高 · 1888</p>
+                            <span class="artwork-detail">布面油画 · 慕尼黑新美术馆</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item classics-item" onclick="openLightbox('https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?w=1400&q=90','睡莲','克劳德·莫奈 · 1906 · 布面油画 · 芝加哥艺术学院')">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?w=600&q=80"
+                             alt="睡莲 - 克劳德·莫奈 1906年 布面油画"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="item-info">
+                            <h3>睡莲</h3>
+                            <p>克劳德·莫奈 · 1906</p>
+                            <span class="artwork-detail">布面油画 · 芝加哥艺术学院</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item classics-item" onclick="openLightbox('https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=1400&q=90','蒙娜丽莎','莱昂纳多·达芬奇 · 约1503 · 木板油画 · 巴黎卢浮宫')">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1544967082-d9d25d867d66?w=600&q=80"
+                             alt="蒙娜丽莎 - 莱昂纳多·达芬奇 约1503年 木板油画 现藏于巴黎卢浮宫"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="item-info">
+                            <h3>蒙娜丽莎</h3>
+                            <p>莱昂纳多·达芬奇 · 约1503</p>
+                            <span class="artwork-detail">木板油画 · 巴黎卢浮宫</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item large classics-item" onclick="openLightbox('https://images.unsplash.com/photo-1578301978018-3005759f48f7?w=1400&q=90','吻','古斯塔夫·克里姆特 · 1907 · 布面油画 · 维也纳美景宫')">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1578301978018-3005759f48f7?w=800&q=80"
+                             alt="吻 - 古斯塔夫·克里姆特 1907-1908年 布面油画 现藏于维也纳美景宫"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="item-info">
+                            <h3>吻</h3>
+                            <p>古斯塔夫·克里姆特 · 1907</p>
+                            <span class="artwork-detail">布面油画 · 维也纳美景宫</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item classics-item" onclick="openLightbox('https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1400&q=90','神奈川冲浪里','葛饰北斋 · 约1831 · 木版画 · 浮世绘')">
+                    <div class="item-inner">
+                        <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80"
+                             alt="神奈川冲浪里 - 葛饰北斋 约1831年 木版画"
+                             class="gallery-image"
+                             loading="lazy">
+                        <div class="item-info">
+                            <h3>神奈川冲浪里</h3>
+                            <p>葛饰北斋 · 约1831</p>
+                            <span class="artwork-detail">木版画 · 浮世绘</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 服务项目 -->
+        <section id="services" class="services-section" aria-label="服务项目">
+            <h2 class="section-title reveal">
+                <span class="title-decorator" aria-hidden="true">◇</span>
+                服务项目
+                <span class="title-decorator" aria-hidden="true">◇</span>
+            </h2>
+            <p class="section-subtitle reveal">我们将艺术灵感与前沿技术融合，为每个项目注入独特生命力</p>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="24" cy="24" r="18"/>
+                            <path d="M24 6c-4 6-6 12-6 18s2 12 6 18c4-6 6-12 6-18s-2-12-6-18z"/>
+                            <line x1="6" y1="24" x2="42" y2="24"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">数字艺术创作</h3>
+                    <p class="service-desc">运用生成算法、分形几何与流体模拟，创造独一无二的数字艺术作品。每件作品都是代码与美学的完美融合。</p>
+                    <span class="service-tag">生成艺术 · 算法设计 · 数据可视化</span>
+                </div>
+
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="6" y="6" width="36" height="36" rx="4"/>
+                            <circle cx="18" cy="18" r="5"/>
+                            <path d="M6 34l10-10 8 8 6-6 12 12"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">交互体验设计</h3>
+                    <p class="service-desc">打造沉浸式网页体验，将微交互动效、3D 场景与用户行为深度融合，让每一次点击都成为艺术互动。</p>
+                    <span class="service-tag">WebGL · 3D 交互 · 动效设计</span>
+                </div>
+
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M24 4l6 12h14l-10 8 4 14-14-8-14 8 4-14L4 16h14z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">品牌视觉系统</h3>
+                    <p class="service-desc">从品牌标识到完整视觉体系，用动态设计语言定义品牌个性。让科技品牌拥有艺术灵魂，让艺术品牌拥有数字基因。</p>
+                    <span class="service-tag">品牌标识 · 动态图形 · 视觉规范</span>
+                </div>
+
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 40V20l8-12h16l8 12v20"/>
+                            <path d="M16 40V26h16v14"/>
+                            <circle cx="24" cy="14" r="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">空间装置艺术</h3>
+                    <p class="service-desc">将数字艺术带入物理空间。LED 矩阵、投影映射、传感器交互——打造令人难忘的沉浸式艺术装置。</p>
+                    <span class="service-tag">投影映射 · LED 装置 · 传感器交互</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于区域 -->
+        <section id="about" class="about-section" aria-label="关于我们">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title reveal">
+                        <span class="title-decorator" aria-hidden="true">✦</span>
+                        关于我们
+                    </h2>
+                    <p class="about-description reveal">
+                        我们是一群热爱艺术与科技的创作者，致力于探索数字艺术的边界。
+                        通过代码、算法和无限的想象力，我们将抽象的概念转化为视觉的诗篇。
+                    </p>
+                    <div class="stats-container">
+                        <div class="stat-item reveal">
+                            <span class="stat-number" data-target="150">0</span>
+                            <span class="stat-label">完成作品</span>
+                        </div>
+                        <div class="stat-item reveal reveal-delay-1">
+                            <span class="stat-number" data-target="50">0</span>
+                            <span class="stat-label">艺术展览</span>
+                        </div>
+                        <div class="stat-item reveal reveal-delay-2">
+                            <span class="stat-number" data-target="12">0</span>
+                            <span class="stat-label">国际奖项</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual reveal">
+                    <div class="art-piece">
+                        <div class="art-layer"></div>
+                        <div class="art-layer"></div>
+                        <div class="art-layer"></div>
+                        <div class="art-core"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 创作流程 -->
+        <section id="process" class="process-section" aria-label="创作流程">
+            <h2 class="section-title reveal">
+                <span class="title-decorator" aria-hidden="true">◈</span>
+                创作流程
+                <span class="title-decorator" aria-hidden="true">◈</span>
+            </h2>
+            <p class="section-subtitle reveal">从灵感到作品，每一步都经过精心打磨</p>
+
+            <div class="process-timeline">
+                <div class="process-line" aria-hidden="true"></div>
+
+                <div class="process-step reveal">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">灵感捕捉</h3>
+                        <p class="step-desc">从自然现象、数学公式、音乐旋律中提取灵感种子。我们相信最美的艺术隐藏在万物运行的规律之中。</p>
+                    </div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="16" cy="12" r="8"/>
+                            <path d="M12 20v6h8v-6"/>
+                            <path d="M10 26h12"/>
+                            <path d="M16 4v2M8 8l1.5 1.5M24 8l-1.5 1.5"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="process-step reveal reveal-delay-1">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">算法建模</h3>
+                        <p class="step-desc">将视觉概念转化为数学模型。运用噪声函数、粒子系统、物理引擎，构建作品的底层逻辑架构。</p>
+                    </div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 28L16 4l12 24"/>
+                            <line x1="8" y1="20" x2="24" y2="20"/>
+                            <circle cx="16" cy="16" r="2"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="process-step reveal reveal-delay-2">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">视觉渲染</h3>
+                        <p class="step-desc">用代码绘制每一帧画面。调色、光影、运动轨迹——在像素层面反复推敲，直到每个细节都达到理想状态。</p>
+                    </div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="4" y="4" width="24" height="24" rx="3"/>
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M4 22l7-7 5 5 3-3 9 9"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="process-step reveal reveal-delay-3">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3 class="step-title">交互打磨</h3>
+                        <p class="step-desc">赋予作品生命力。添加鼠标响应、触摸反馈、设备传感器联动，让静态画面变成可感知的动态体验。</p>
+                    </div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 4C10 4 4 10 4 16s6 12 12 12 12-6 12-12"/>
+                            <path d="M28 4l-8 8"/>
+                            <circle cx="16" cy="16" r="4"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 客户评价 -->
+        <section id="testimonials" class="testimonials-section" aria-label="客户评价">
+            <h2 class="section-title reveal">
+                <span class="title-decorator" aria-hidden="true">◆</span>
+                客户评价
+                <span class="title-decorator" aria-hidden="true">◆</span>
+            </h2>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-quote" aria-hidden="true">"</div>
+                    <p class="testimonial-text">梦境艺术团队将我们模糊的品牌愿景转化成了令人惊叹的视觉系统。他们的数字艺术作品不仅美观，更蕴含着深层的叙事力量。</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">L</div>
+                        <div class="author-info">
+                            <span class="author-name">林雨晨</span>
+                            <span class="author-role">NovaTech · 品牌总监</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="testimonial-quote" aria-hidden="true">"</div>
+                    <p class="testimonial-text">我们美术馆的沉浸式展览因为他们的装置作品而大获成功。观众在作品前平均停留超过 8 分钟，这在数字艺术展中极为罕见。</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">W</div>
+                        <div class="author-info">
+                            <span class="author-name">王思远</span>
+                            <span class="author-role">当代艺术馆 · 策展人</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="testimonial-quote" aria-hidden="true">"</div>
+                    <p class="testimonial-text">与梦境艺术合作是一次跨越边界的体验。他们对代码与艺术的理解深度远超预期，最终交付的交互作品让我们的产品焕然一新。</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">Z</div>
+                        <div class="author-info">
+                            <span class="author-name">张明哲</span>
+                            <span class="author-role">ByteFlow · 产品副总裁</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系区域 -->
+        <section id="contact" class="contact-section" aria-label="联系我们">
+            <h2 class="section-title reveal">
+                <span class="title-decorator" aria-hidden="true">◆</span>
+                联系我们
+            </h2>
+            <div class="contact-container">
+                <form class="contact-form reveal" id="contactForm" novalidate>
+                    <div class="form-group">
+                        <input type="text" id="name" required placeholder=" " autocomplete="name" aria-label="您的姓名">
+                        <label for="name">您的姓名</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required placeholder=" " autocomplete="email" aria-label="电子邮箱">
+                        <label for="email">电子邮箱</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" required placeholder=" " aria-label="您的留言"></textarea>
+                        <label for="message">您的留言</label>
+                        <div class="input-line"></div>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <span>发送消息</span>
+                        <div class="btn-shine"></div>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 订阅通讯 -->
+        <section class="newsletter-section" aria-label="订阅通讯">
+            <div class="newsletter-container reveal">
+                <div class="newsletter-glow" aria-hidden="true"></div>
+                <h2 class="newsletter-title">加入我们的创意宇宙</h2>
+                <p class="newsletter-desc">订阅梦境艺术通讯，第一时间获取新作品发布、创作幕后故事与独家艺术见解</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="newsletter-input-wrap">
+                        <input type="email" placeholder="输入您的邮箱地址" aria-label="邮箱地址" required>
+                        <button type="submit" class="btn-newsletter">
+                            <span>订阅</span>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                <p class="newsletter-note">我们尊重您的隐私，不会发送垃圾邮件</p>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer" role="contentinfo">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="brand-icon" aria-hidden="true">✦</span>
+                    <span>梦境艺术工作室</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">隐私政策</a>
+                    <a href="#">使用条款</a>
+                    <a href="#">网站地图</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="微博">微博</a>
+                    <a href="#" class="social-link" aria-label="微信">微信</a>
+                    <a href="#" class="social-link" aria-label="小红书">小红书</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 梦境艺术工作室 · 保留所有权利</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-label="页面滚动进度"></div>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="返回顶部">
+        <svg viewBox="0 0 24 24" width="20" height="20">
+            <path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <!-- 名画大图查看 Lightbox -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="关闭">&times;</button>
+        <div class="lightbox-content" id="lightboxContent">
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+            <div class="lightbox-info" id="lightboxInfo"></div>
+        </div>
+    </div>
+
+    <script src="particles.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

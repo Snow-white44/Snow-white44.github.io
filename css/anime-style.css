@@ -1,10 +1,77 @@
 /* ============================================
    动漫风格自定义样式
-   Anime Style Custom CSS
    ============================================ */
 
-/* 网站整体背景 - 使用本地图片或在线图片 */
-/* 方法1: 使用本地图片（推荐） */
+/* ============================================
+   主题颜色覆盖 - 在这里统一改所有颜色
+   ============================================ */
+:root {
+    /* 主题色（链接、按钮高亮、当前页码等） */
+    --anzhiyu-theme: #4259ef;
+    --anzhiyu-theme-deep: #1856fb;
+    --anzhiyu-theme-op: #4259ef23;
+    --anzhiyu-theme-op-deep: #4259efdd;
+
+    /* 全局主色 */
+    --anzhiyu-main: var(--anzhiyu-theme);
+    --anzhiyu-main-op: var(--anzhiyu-theme-op);
+
+    /* 卡片背景色 */
+    --anzhiyu-card-bg: #fff;
+
+    /* 绿色（翻转卡片背景等） */
+    --anzhiyu-green: #57bd6a;
+
+    /* 阴影色 */
+    --anzhiyu-shadow-blue: 0 8px 12px -3px rgba(40, 109, 234, 0.2);
+    --anzhiyu-shadow-green: 0 8px 12px -3px #87ee7936;
+    --anzhiyu-shadow-theme: 0 8px 12px -3px var(--anzhiyu-theme-op);
+}
+
+[data-theme="dark"] {
+    --anzhiyu-card-bg: #1d1e22;
+}
+
+/* ============================================
+   翻转卡片（微信/公众号）背景色
+   ============================================ */
+
+/* 绿色背景 → 改成你想要的颜色或透明 */
+#aside-content .card-widget#card-wechat {
+    background: transparent !important;   /* ← 改这里，换成其他颜色或 transparent */
+}
+
+[data-theme="dark"] #aside-content .card-widget#card-wechat {
+    background-color: #121121 !important;
+}
+
+/* ============================================
+   随机逛逛 Banner 背景色
+   ============================================ */
+
+/* canvas 人物区域的容器背景 */
+#random-banner {
+    background: var(--anzhiyu-card-bg) !important;   /* ← 跟随卡片背景色 */
+}
+
+/* canvas 本身透明（如果看到蓝色，是图片自带的） */
+#peoplecanvas {
+    background: transparent !important;
+}
+
+/* ============================================
+   导航栏高亮色（随便逛逛 hover 时的颜色）
+   ============================================ */
+
+#random-hover {
+    background: linear-gradient(
+          rgba(0, 0, 0, 0.3),
+          rgba(0, 0, 0, 0.3)
+      ), url('/img/anime-bg/people.jpg') center/cover no-repeat !important;
+}
+
+/* ============================================
+   网站整体背景 */
 #web_bg {
     background: url('/img/anime-bg/bg.jpg') center/cover no-repeat fixed;
     position: fixed;
@@ -15,7 +82,7 @@
     z-index: -1;
 }
 
-/* 背景遮罩（让内容更清晰） */
+/* 背景遮罩极淡 */
 #web_bg::after {
     content: '';
     position: absolute;
@@ -23,119 +90,451 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 182, 193, 0.3),
-        rgba(147, 112, 219, 0.3)
-    );
-    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.05);
 }
 
-/* 主内容区域背景 */
+/* ============================================
+   导航栏
+   ============================================ */
+
 #page-header,
-.main-hero,
-#home_top {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(10px);
+#nav {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
 }
 
-/* 深色模式 */
 [data-theme="dark"] #page-header,
-[data-theme="dark"] .main-hero,
-[data-theme="dark"] #home_top {
-    background: rgba(24, 23, 29, 0.9) !important;
+[data-theme="dark"] #nav {
+    background: rgba(24, 23, 29, 0.2) !important;
 }
 
-/* 文章卡片背景 */
-.recent-post-item {
-    background: rgba(255, 255, 255, 0.9) !important;
+/* ============================================
+   首页顶部区域 #home_top
+   ============================================ */
+
+#home_top {
+    background: transparent !important;
+}
+
+/* 随机逛逛 banner */
+#random-banner {
+    background: rgba(255, 255, 255, 0.15) !important;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] #random-banner {
+    background: rgba(36, 36, 48, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 分类按钮：前端、大学、生活 - 半透明渐变 */
+a.categoryButton.blue {
+    background: linear-gradient(to right, rgba(53, 139, 255, 0.6), rgba(21, 198, 255, 0.6)) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+a.categoryButton.red {
+    background: linear-gradient(to right, rgba(255, 102, 85, 0.6), rgba(255, 191, 55, 0.6)) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+a.categoryButton.green {
+    background: linear-gradient(to right, rgba(24, 231, 174, 0.6), rgba(30, 235, 235, 0.6)) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+[data-theme="dark"] a.categoryButton.blue {
+    background: linear-gradient(to right, rgba(6, 83, 184, 0.6), rgba(47, 203, 255, 0.6)) !important;
+}
+
+[data-theme="dark"] a.categoryButton.red {
+    background: linear-gradient(to right, rgba(226, 42, 22, 0.6), rgba(218, 152, 12, 0.6)) !important;
+}
+
+[data-theme="dark"] a.categoryButton.green {
+    background: linear-gradient(to right, rgba(9, 158, 116, 0.6), rgba(14, 164, 164, 0.6)) !important;
+}
+
+/* 玻璃折射效果 - 3D变换支持 */
+.categoryItem {
+    transform-style: preserve-3d !important;
+    will-change: transform;
+}
+
+/* ============================================
+   顶部文章卡片 .topGroup
+   ============================================ */
+
+.topGroup .todayCard {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+[data-theme="dark"] .topGroup .todayCard {
+    background: rgba(36, 36, 48, 0.2) !important;
+}
+
+.topGroup .recent-post-item {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] .topGroup .recent-post-item {
+    background: rgba(36, 36, 48, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ============================================
+   文章列表卡片
+   ============================================ */
+
+.recent-post-item {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .recent-post-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.25) !important;
 }
 
 [data-theme="dark"] .recent-post-item {
-    background: rgba(36, 36, 48, 0.9) !important;
+    background: rgba(36, 36, 48, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 
-/* 侧边栏背景 */
+[data-theme="dark"] .recent-post-item:hover {
+    background: rgba(36, 36, 48, 0.3) !important;
+}
+
+/* ============================================
+   面包屑导航栏（分类栏）
+   ============================================ */
+
+#categoryBar,
+#category-bar,
+.category-bar {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] #categoryBar,
+[data-theme="dark"] #category-bar,
+[data-theme="dark"] .category-bar {
+    background: rgba(36, 36, 48, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+#category-bar #catalog-bar {
+    background: transparent !important;
+}
+
+#category-bar.category-bar:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ============================================
+   分页按钮
+   ============================================ */
+
+#pagination .page-number {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] #pagination .page-number {
+    background: rgba(36, 36, 48, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+#pagination .page-number:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+#pagination .page-number.current {
+    background: var(--anzhiyu-theme) !important;
+    border: var(--style-border-hover) !important;
+    color: var(--anzhiyu-white) !important;
+}
+
+#pagination a.extend.next,
+#pagination a.extend.prev {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] #pagination a.extend.next,
+[data-theme="dark"] #pagination a.extend.prev {
+    background: rgba(36, 36, 48, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+#pagination .pagination input {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] #pagination .pagination input {
+    background: rgba(36, 36, 48, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+a#toPageButton {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="dark"] a#toPageButton {
+    background: rgba(36, 36, 48, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ============================================
+   侧边栏
+   ============================================ */
+
 aside .aside-box,
 aside .card-widget {
-    background: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
     border-radius: 12px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 [data-theme="dark"] aside .aside-box,
 [data-theme="dark"] aside .card-widget {
-    background: rgba(36, 36, 48, 0.9) !important;
+    background: rgba(36, 36, 48, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
 }
 
-/* 分类按钮样式 */
-.categoryGroup .categoryItem {
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
+/* ============================================
+   文章详情页 - 深色半透明容器
+   ============================================ */
 
-.categoryGroup .categoryItem:hover {
-    transform: scale(1.05);
-}
-
-/* Banner 区域 */
-#random-banner {
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-/* 文章详情页背景 */
 #post,
 #page {
-    background: rgba(255, 255, 255, 0.9) !important;
+    background: transparent !important;
     border-radius: 12px;
-    padding: 20px;
+    padding: 0;
     margin-top: 20px;
+    border: none !important;
+    box-shadow: none !important;
 }
 
-[data-theme="dark"] #post,
-[data-theme="dark"] #page {
-    background: rgba(36, 36, 48, 0.9) !important;
+/* 文章内容区域 - 深色半透明 */
+#article-container {
+    background: rgba(20, 20, 30, 0.55) !important;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: #ffffff !important;
 }
 
-/* 页脚背景 */
+#article-container * {
+    color: #ffffff !important;
+}
+
+#article-container a {
+    color: #8ab4f8 !important;
+}
+
+#article-container a:hover {
+    color: #a8c8ff !important;
+}
+
+/* 引言 - 白底黑字 */
+#article-container blockquote {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-left: 4px solid #4259ef !important;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 16px 0;
+}
+
+#article-container blockquote * {
+    color: #1a1a2e !important;
+}
+
+/* 作者区域 - 白底黑字 */
+.post-copyright {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.post-copyright * {
+    color: #1a1a2e !important;
+}
+
+.post-copyright a {
+    color: #4259ef !important;
+}
+
+.post-copyright a:hover {
+    color: #1856fb !important;
+}
+
+[data-theme="dark"] #article-container {
+    background: rgba(15, 15, 25, 0.88) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+[data-theme="dark"] .post-copyright {
+    background: rgba(40, 40, 55, 0.95) !important;
+}
+
+[data-theme="dark"] .post-copyright * {
+    color: #e0e0e0 !important;
+}
+
+/* Related Articles 图片文字白色 */
+.relatedPosts .content,
+.relatedPosts .content .title,
+.relatedPosts .content .date,
+.relatedPosts .content * {
+    color: #ffffff !important;
+}
+
+/* ============================================
+   页脚
+   ============================================ */
+
 #footer {
-    background: rgba(255, 255, 255, 0.85) !important;
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
 }
 
 [data-theme="dark"] #footer {
-    background: rgba(24, 23, 29, 0.9) !important;
+    background: rgba(24, 23, 29, 0.15) !important;
 }
 
-/* 头像和个人信息卡片 */
+/* ============================================
+   其他模块
+   ============================================ */
+
 .author-info-box,
 .author-box {
-    background: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(255, 255, 255, 0.15) !important;
     border-radius: 12px;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
 }
 
 [data-theme="dark"] .author-info-box,
 [data-theme="dark"] .author-box {
-    background: rgba(36, 36, 48, 0.9) !important;
+    background: rgba(36, 36, 48, 0.2) !important;
 }
 
-/* 标签云 */
+.category-lists .category-title {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.article-sort {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.flink-list .flink-item {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+#search-box .search-dialog {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 12px;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}
+
+#post-comment .comment-head,
+#post-comment .comment-wrap {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px;
+    padding: 15px;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* ============================================
+   文字和图标 - 完全不透明
+   ============================================ */
+
+.recent-post-item *,
+aside .aside-box *,
+aside .card-widget *,
+#post *,
+#page *,
+#footer *,
+.author-info-box *,
+.author-box *,
+#categoryBar *,
+#category-bar *,
+#pagination * {
+    color: inherit;
+}
+
+.recent-post-item .article-title,
+.post-title {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .recent-post-item .article-title,
+[data-theme="dark"] .post-title {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 分类标签彩色不透明 */
+.recent-post-info .article-meta .article-tag,
+.recent-post-info .article-meta .tag {
+    opacity: 1 !important;
+    background: var(--anzhiyu-main) !important;
+    color: #fff !important;
+}
+
 .tag-cloud-list a {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     padding: 5px 12px;
     margin: 5px;
-    transition: all 0.3s ease;
+    opacity: 1 !important;
 }
 
 .tag-cloud-list a:hover {
@@ -143,53 +542,10 @@ aside .card-widget {
     color: white;
 }
 
-/* 分类页面 */
-.category-lists .category-title {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    padding: 20px;
-}
+/* ============================================
+   动画
+   ============================================ */
 
-/* 归档页面 */
-.article-sort {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    padding: 20px;
-}
-
-/* 友链页面 */
-.flink-list .flink-item {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-.flink-list .flink-item:hover {
-    transform: translateY(-5px);
-}
-
-/* 搜索框样式 */
-#search-box .search-dialog {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 12px;
-    backdrop-filter: blur(15px);
-}
-
-/* 评论区背景 */
-#post-comment .comment-head,
-#post-comment .comment-wrap {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    padding: 15px;
-}
-
-/* 动态波浪效果（可选） */
-@keyframes wave {
-    0%, 100% { transform: translateX(0) translateZ(0) scaleY(1); }
-    50% { transform: translateX(-25%) translateZ(0) scaleY(0.55); }
-}
-
-/* 卡片入场动画 */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -207,7 +563,6 @@ aside .card-widget {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* 鼠标悬停光效 */
 .recent-post-item::before {
     content: '';
     position: absolute;
@@ -218,18 +573,28 @@ aside .card-widget {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.1),
         transparent
     );
     transition: left 0.5s ease;
     z-index: 1;
+    border-radius: 12px;
 }
 
 .recent-post-item:hover::before {
     left: 100%;
 }
 
-/* 滚动条美化 */
+/* ============================================
+   加载动画 - 头像加载
+   ============================================ */
+
+/* 加载背景 */
+.loading-bg {
+    background: #000 !important;
+}
+
+/* 滚动条 */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;

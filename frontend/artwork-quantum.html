@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>量子花园 - 梦境艺术</title>
+    <link rel="stylesheet" href="artwork.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="artwork-nav">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            返回画廊
+        </a>
+        <span class="nav-title">梦境艺术</span>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="artwork-container">
+        <!-- 作品主图 -->
+        <div class="artwork-hero">
+            <div class="artwork-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&q=80"
+                     alt="量子花园"
+                     class="artwork-main-image"
+                     onerror="this.src='https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=1200&q=80'">
+                <div class="image-overlay">
+                    <span class="artwork-tag">科技艺术 · 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品画廊 -->
+        <div class="artwork-gallery">
+            <div class="gallery-thumbnails">
+                <div class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=200&q=60" alt="量子粒子">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=200&q=60" alt="科学实验">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=200&q=60" alt="微观世界">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=200&q=60" alt="数据可视化">
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品信息 -->
+        <div class="artwork-content">
+            <div class="content-header">
+                <h1 class="artwork-title">量子花园</h1>
+                <p class="artwork-subtitle">Quantum Garden</p>
+                <div class="artwork-meta">
+                    <span class="meta-badge">🧑‍🔬 科技艺术家</span>
+                    <span class="meta-badge">📅 2024</span>
+                    <span class="meta-badge">🖼️ 4096 × 4096 px</span>
+                    <span class="meta-badge">🎨 量子绿 · 能量青</span>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="artwork-description">
+                    <h2>✨ 作品简介</h2>
+                    <p>《量子花园》是一件融合科学与艺术的杰作。作品以量子物理为灵感，通过高倍显微镜下的微观世界图像，结合数字艺术处理，呈现出一个肉眼无法看见的奇妙花园。粒子的轨迹、波函数的坍缩、量子纠缠的可视化，都在这件作品中得到了艺术化的表达。</p>
+
+                    <h2>🔬 创作理念</h2>
+                    <p>量子世界颠覆了我们对现实的认知——粒子可以同时存在于多个位置，观测会改变结果，远距离的粒子可以瞬间关联。这件作品试图用艺术的语言，让观者感受到量子世界的神奇与美丽，激发对科学的好奇与敬畏。</p>
+
+                    <h2>💻 技术细节</h2>
+                    <p>作品基于真实的粒子对撞机数据和量子计算机模拟结果进行艺术再创作。使用了数据可视化技术将量子态转化为视觉图像，色彩映射基于粒子能量等级，形态生成遵循量子力学方程。最终效果在科学准确性与艺术美感之间达到了完美平衡。</p>
+                </div>
+
+                <div class="artwork-artist">
+                    <h2>👨‍🎨 关于艺术家</h2>
+                    <div class="artist-card">
+                        <div class="artist-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=60" alt="艺术家">
+                        </div>
+                        <div class="artist-info">
+                            <h3>梦境艺术工作室</h3>
+                            <p>由科学家和艺术家组成的跨界团队，专注于科学数据的艺术化表达。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 相关作品推荐 -->
+        <div class="related-section">
+            <h2>🎨 相关作品推荐</h2>
+            <div class="related-grid">
+                <a href="artwork-digital.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=60" alt="数字幻境">
+                    <div class="related-info">
+                        <h3>数字幻境</h3>
+                        <p>数字艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-star.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=60" alt="星际漫游">
+                    <div class="related-info">
+                        <h3>星际漫游</h3>
+                        <p>宇宙艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-time.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1501139083538-013ee33b3896?w=400&q=60" alt="时光碎片">
+                    <div class="related-info">
+                        <h3>时光碎片</h3>
+                        <p>时间艺术</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="artwork.js"></script>
+</body>
+</html>

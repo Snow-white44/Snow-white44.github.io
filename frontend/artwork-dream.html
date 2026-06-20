@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梦境交织 - 梦境艺术</title>
+    <link rel="stylesheet" href="artwork.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="artwork-nav">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            返回画廊
+        </a>
+        <span class="nav-title">梦境艺术</span>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="artwork-container">
+        <!-- 作品主图 -->
+        <div class="artwork-hero">
+            <div class="artwork-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=1200&q=80"
+                     alt="梦境交织"
+                     class="artwork-main-image"
+                     onerror="this.src='https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&q=80'">
+                <div class="image-overlay">
+                    <span class="artwork-tag">抽象艺术 · 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品画廊 -->
+        <div class="artwork-gallery">
+            <div class="gallery-thumbnails">
+                <div class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=200&q=60" alt="抽象渐变">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=200&q=60" alt="彩色渐变">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=200&q=60" alt="色彩流动">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=200&q=60" alt="3D抽象">
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品信息 -->
+        <div class="artwork-content">
+            <div class="content-header">
+                <h1 class="artwork-title">梦境交织</h1>
+                <p class="artwork-subtitle">Dreamscape Interweaving</p>
+                <div class="artwork-meta">
+                    <span class="meta-badge">🧑‍🎨 抽象艺术大师</span>
+                    <span class="meta-badge">📅 2024</span>
+                    <span class="meta-badge">🖼️ 4096 × 4096 px</span>
+                    <span class="meta-badge">🎨 梦幻粉 · 迷幻紫</span>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="artwork-description">
+                    <h2>✨ 作品简介</h2>
+                    <p>《梦境交织》是一件充满想象力的抽象艺术作品。色彩在画布上自由流动，形成如梦如幻的视觉效果。粉红、紫色、蓝色交织在一起，创造出一个超越现实的梦境空间，让观者沉浸在无尽的想象之中。</p>
+
+                    <h2>🎭 创作理念</h2>
+                    <p>梦境是人类潜意识的表达，是内心世界最真实的映射。这件作品试图用色彩和形态来表达梦境的流动性和不确定性。每一处色彩的交汇都是一个记忆的碎片，每一个形态的变化都是一段情感的流淌。</p>
+
+                    <h2>🖌️ 技术手法</h2>
+                    <p>作品采用数字流体艺术技法，通过算法模拟色彩在流体中的扩散与融合。使用了超过 100 层的色彩叠加，每层都有独立的透明度和混合模式。最终效果呈现出丝绸般的质感和梦幻般的光影。</p>
+                </div>
+
+                <div class="artwork-artist">
+                    <h2>👨‍🎨 关于艺术家</h2>
+                    <div class="artist-card">
+                        <div class="artist-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=60" alt="艺术家">
+                        </div>
+                        <div class="artist-info">
+                            <h3>梦境艺术工作室</h3>
+                            <p>专注于抽象艺术与数字美学的融合创作，作品以梦幻色彩和流动形态著称。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 相关作品推荐 -->
+        <div class="related-section">
+            <h2>🎨 相关作品推荐</h2>
+            <div class="related-grid">
+                <a href="artwork-star.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=60" alt="星际漫游">
+                    <div class="related-info">
+                        <h3>星际漫游</h3>
+                        <p>宇宙艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-light.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=400&q=60" alt="流光溢彩">
+                    <div class="related-info">
+                        <h3>流光溢彩</h3>
+                        <p>光影艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-digital.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=60" alt="数字幻境">
+                    <div class="related-info">
+                        <h3>数字幻境</h3>
+                        <p>数字艺术</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="artwork.js"></script>
+</body>
+</html>

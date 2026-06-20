@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星际漫游 - 梦境艺术</title>
+    <link rel="stylesheet" href="artwork.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="artwork-nav">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            返回画廊
+        </a>
+        <span class="nav-title">梦境艺术</span>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="artwork-container">
+        <!-- 作品主图 -->
+        <div class="artwork-hero">
+            <div class="artwork-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1200&q=80"
+                     alt="星际漫游"
+                     class="artwork-main-image"
+                     onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80'">
+                <div class="image-overlay">
+                    <span class="artwork-tag">数字艺术 · 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品画廊 -->
+        <div class="artwork-gallery">
+            <div class="gallery-thumbnails">
+                <div class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=200&q=60" alt="星云">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=200&q=60" alt="地球夜景">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=200&q=60" alt="航天飞机">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?w=200&q=60" alt="银河">
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品信息 -->
+        <div class="artwork-content">
+            <div class="content-header">
+                <h1 class="artwork-title">星际漫游</h1>
+                <p class="artwork-subtitle">Interstellar Wandering</p>
+                <div class="artwork-meta">
+                    <span class="meta-badge">🧑‍🎨 数字艺术家团队</span>
+                    <span class="meta-badge">📅 2024</span>
+                    <span class="meta-badge">🖼️ 4096 × 4096 px</span>
+                    <span class="meta-badge">🎨 宇宙蓝 · 星云紫</span>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="artwork-description">
+                    <h2>✨ 作品简介</h2>
+                    <p>《星际漫游》是一件震撼人心的宇宙主题数字艺术作品。通过高精度的天文摄影与数字后期技术相结合，呈现出宇宙深处最壮丽的景观。璀璨的星云、遥远的星系、神秘的黑洞，在这幅作品中交织成一首光与影的宇宙诗篇。</p>
+
+                    <h2>🌌 创作理念</h2>
+                    <p>人类自古以来就对星空充满向往。这件作品试图捕捉宇宙最原始的美——那是超越人类想象力的壮丽，是时间与空间的终极表达。观者在凝视这幅作品时，会感受到自身的渺小与宇宙的无限，从而产生对生命和存在的深刻思考。</p>
+
+                    <h2>🔬 技术细节</h2>
+                    <p>作品基于哈勃太空望远镜的真实天文数据进行艺术再创作。使用了多层叠加技术，将不同波段的观测数据转化为可见光色彩。星云的形态经过流体动力学模拟，确保物理真实性的同时增强视觉冲击力。最终作品分辨率达到 4096×4096 像素，支持大幅面打印展示。</p>
+                </div>
+
+                <div class="artwork-artist">
+                    <h2>👨‍🎨 关于艺术家</h2>
+                    <div class="artist-card">
+                        <div class="artist-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=60" alt="艺术家">
+                        </div>
+                        <div class="artist-info">
+                            <h3>梦境艺术工作室</h3>
+                            <p>专注于数字艺术与科技美学的融合创作，作品曾参展多个国际数字艺术展览。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 相关作品推荐 -->
+        <div class="related-section">
+            <h2>🎨 相关作品推荐</h2>
+            <div class="related-grid">
+                <a href="artwork-dream.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=60" alt="梦境交织">
+                    <div class="related-info">
+                        <h3>梦境交织</h3>
+                        <p>抽象艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-time.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1501139083538-013ee33b3896?w=400&q=60" alt="时光碎片">
+                    <div class="related-info">
+                        <h3>时光碎片</h3>
+                        <p>时间主题</p>
+                    </div>
+                </a>
+                <a href="artwork-quantum.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=60" alt="量子花园">
+                    <div class="related-info">
+                        <h3>量子花园</h3>
+                        <p>科技艺术</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="artwork.js"></script>
+</body>
+</html>

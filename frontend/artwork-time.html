@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时光碎片 - 梦境艺术</title>
+    <link rel="stylesheet" href="artwork.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="artwork-nav">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            返回画廊
+        </a>
+        <span class="nav-title">梦境艺术</span>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="artwork-container">
+        <!-- 作品主图 -->
+        <div class="artwork-hero">
+            <div class="artwork-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1501139083538-013ee33b3896?w=1200&q=80"
+                     alt="时光碎片"
+                     class="artwork-main-image"
+                     onerror="this.src='https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=1200&q=80'">
+                <div class="image-overlay">
+                    <span class="artwork-tag">时间艺术 · 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品画廊 -->
+        <div class="artwork-gallery">
+            <div class="gallery-thumbnails">
+                <div class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1501139083538-013ee33b3896?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1501139083538-013ee33b3896?w=200&q=60" alt="沙漏">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=200&q=60" alt="钟表">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=200&q=60" alt="光轨">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=200&q=60" alt="怀表">
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品信息 -->
+        <div class="artwork-content">
+            <div class="content-header">
+                <h1 class="artwork-title">时光碎片</h1>
+                <p class="artwork-subtitle">Temporal Fragments</p>
+                <div class="artwork-meta">
+                    <span class="meta-badge">🧑‍🎨 时间艺术家</span>
+                    <span class="meta-badge">📅 2024</span>
+                    <span class="meta-badge">🖼️ 4096 × 4096 px</span>
+                    <span class="meta-badge">🎨 时空蓝 · 记忆青</span>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="artwork-description">
+                    <h2>✨ 作品简介</h2>
+                    <p>《时光碎片》是一件关于时间本质的艺术作品。沙漏中流淌的细沙、钟表上转动的指针、光轨划过的夜空，这些关于时间的意象在作品中交织融合，形成一首视觉的时间诗篇。</p>
+
+                    <h2>⏳ 创作理念</h2>
+                    <p>时间是宇宙中最神秘的力量，它无形无相，却塑造着一切。这件作品试图捕捉时间的多重面貌——它是温柔的流逝，也是残酷的消磨；它是记忆的载体，也是遗忘的帮凶。观者在凝视这些时光碎片时，会感受到时间的重量与轻盈。</p>
+
+                    <h2>📷 技术手法</h2>
+                    <p>作品结合了长曝光摄影与数字合成技术。沙漏的拍摄使用了微距镜头和高速快门，捕捉每一粒沙的运动轨迹。钟表的图像采用了多重曝光技法，将不同时刻的指针位置叠加在同一画面中。光轨部分则是长达数小时的长曝光成果。</p>
+                </div>
+
+                <div class="artwork-artist">
+                    <h2>👨‍🎨 关于艺术家</h2>
+                    <div class="artist-card">
+                        <div class="artist-avatar">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=60" alt="艺术家">
+                        </div>
+                        <div class="artist-info">
+                            <h3>梦境艺术工作室</h3>
+                            <p>专注于时间与记忆主题的艺术创作，作品多次入选国际摄影艺术展。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 相关作品推荐 -->
+        <div class="related-section">
+            <h2>🎨 相关作品推荐</h2>
+            <div class="related-grid">
+                <a href="artwork-star.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=60" alt="星际漫游">
+                    <div class="related-info">
+                        <h3>星际漫游</h3>
+                        <p>宇宙艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-quantum.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&q=60" alt="量子花园">
+                    <div class="related-info">
+                        <h3>量子花园</h3>
+                        <p>科技艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-dream.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=60" alt="梦境交织">
+                    <div class="related-info">
+                        <h3>梦境交织</h3>
+                        <p>抽象艺术</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="artwork.js"></script>
+</body>
+</html>

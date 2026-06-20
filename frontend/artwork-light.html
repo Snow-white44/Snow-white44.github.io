@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流光溢彩 - 梦境艺术</title>
+    <link rel="stylesheet" href="artwork.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="artwork-nav">
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+                <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            返回画廊
+        </a>
+        <span class="nav-title">梦境艺术</span>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="artwork-container">
+        <!-- 作品主图 -->
+        <div class="artwork-hero">
+            <div class="artwork-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=1200&q=80"
+                     alt="流光溢彩"
+                     class="artwork-main-image"
+                     onerror="this.src='https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&q=80'">
+                <div class="image-overlay">
+                    <span class="artwork-tag">光影艺术 · 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品画廊 -->
+        <div class="artwork-gallery">
+            <div class="gallery-thumbnails">
+                <div class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=200&q=60" alt="霓虹光">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1557683316-973673baf926?w=200&q=60" alt="渐变色彩">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=200&q=60" alt="光绘">
+                </div>
+                <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=200&q=60" alt="星空">
+                </div>
+            </div>
+        </div>
+
+        <!-- 作品信息 -->
+        <div class="artwork-content">
+            <div class="content-header">
+                <h1 class="artwork-title">流光溢彩</h1>
+                <p class="artwork-subtitle">Radiant Flow</p>
+                <div class="artwork-meta">
+                    <span class="meta-badge">🧑‍🎨 光影艺术家</span>
+                    <span class="meta-badge">📅 2024</span>
+                    <span class="meta-badge">🖼️ 4096 × 4096 px</span>
+                    <span class="meta-badge">🎨 彩虹光谱 · 棱镜折射</span>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="artwork-description">
+                    <h2>✨ 作品简介</h2>
+                    <p>《流光溢彩》是一件以光为主题的艺术杰作。霓虹灯光在夜色中舞动，色彩在空间中流淌，光与影在画布上交织出最绚丽的诗篇。这件作品捕捉了光的本质——它是色彩的源泉，是视觉的基础，是艺术的灵魂。</p>
+
+                    <h2>🌈 创作理念</h2>
+                    <p>光是宇宙中最基本的存在之一，它穿越时空，照亮黑暗，带来色彩与生命。这件作品致敬了光的神奇——白光可以被分解成彩虹，光线可以被棱镜折射，色彩可以随心所欲地流动。观者在欣赏作品时，会感受到光的温暖、力量与无限可能。</p>
+
+                    <h2>📸 技术手法</h2>
+                    <p>作品采用了长曝光摄影与光绘技术。霓虹灯的拍摄使用了特殊的镜头滤镜，增强了色彩的饱和度和对比度。光绘部分则是艺术家在黑暗中用手电筒和彩色光源绘制而成，每一条光线都是真实存在的轨迹。后期使用了 HDR 合成技术，确保画面的每一个细节都清晰可见。</p>
+                </div>
+
+                <div class="artwork-artist">
+                    <h2>👨‍🎨 关于艺术家</h2>
+                    <div class="artist-card">
+                        <div class="artist-avatar">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=60" alt="艺术家">
+                        </div>
+                        <div class="artist-info">
+                            <h3>梦境艺术工作室</h3>
+                            <p>专注于光影艺术与摄影创作，作品以独特的光绘技法和色彩运用著称。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 相关作品推荐 -->
+        <div class="related-section">
+            <h2>🎨 相关作品推荐</h2>
+            <div class="related-grid">
+                <a href="artwork-dream.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=60" alt="梦境交织">
+                    <div class="related-info">
+                        <h3>梦境交织</h3>
+                        <p>抽象艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-digital.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=60" alt="数字幻境">
+                    <div class="related-info">
+                        <h3>数字幻境</h3>
+                        <p>数字艺术</p>
+                    </div>
+                </a>
+                <a href="artwork-star.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=400&q=60" alt="星际漫游">
+                    <div class="related-info">
+                        <h3>星际漫游</h3>
+                        <p>宇宙艺术</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="artwork.js"></script>
+</body>
+</html>
