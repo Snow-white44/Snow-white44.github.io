@@ -16,8 +16,8 @@
     dialog.setAttribute('role', 'dialog');
     dialog.setAttribute('aria-modal', 'true');
     dialog.setAttribute('aria-label', '站内搜索');
-    input.setAttribute('aria-label', '搜索文章标题、正文或标签');
-    input.placeholder = '输入作品名、正文关键词或标签';
+    input.setAttribute('aria-label', '搜索关键词、作品简称或角色名');
+    input.placeholder = '搜关键词、简称或角色名，例如：骨王';
     dialog.querySelector('.search-close-button').setAttribute('aria-label', '关闭搜索');
     results.setAttribute('aria-live', 'polite');
 
@@ -29,14 +29,29 @@
     };
     function render() {
       if (!entries) return;
-      const terms = input.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      const normalize = value => String(value || '').normalize('NFKC').toLowerCase();
+      const query = normalize(input.value).trim();
+      const terms = query.split(/\s+/).filter(Boolean);
       status.textContent = '';
-      if (!terms.length) { message('输入关键词，搜索全部文章。'); return; }
-      const hits = entries.filter(entry => {
-        const text = [entry.title, entry.content, ...(entry.tags || [])].join(' ').toLowerCase();
-        return terms.every(term => text.includes(term));
-      });
-      if (!hits.length) { message('没有找到相关文章，试试作品名或更短的关键词。'); return; }
+      if (!terms.length) { message('不用输入完整标题，试试“骨王”“飞鼠”或“异世界”。'); return; }
+      const hits = entries.map(entry => {
+        const title = normalize(entry.title);
+        const aliases = (entry.aliases || []).map(normalize);
+        const tags = (entry.tags || []).map(normalize);
+        const content = normalize(entry.content);
+        let matched = 0;
+        let score = 0;
+        for (const term of terms) {
+          const weight = aliases.includes(term) ? 100 : title.includes(term) ? 60
+            : aliases.some(alias => alias.includes(term)) ? 40
+            : tags.some(tag => tag.includes(term)) ? 20 : content.includes(term) ? 5 : 0;
+          if (weight) matched++;
+          score += weight;
+        }
+        if (matched === terms.length) score += 200;
+        return { entry, matched, score };
+      }).filter(hit => hit.matched > 0).sort((a, b) => b.score - a.score).map(hit => hit.entry);
+      if (!hits.length) { message('暂时没找到相关文章，可以换个关键词；部分简称可能尚未收录。'); return; }
       results.replaceChildren();
       status.textContent = `找到 ${hits.length} 篇`;
       const list = document.createElement('div');
