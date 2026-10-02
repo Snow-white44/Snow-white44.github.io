@@ -1113,9 +1113,13 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const lazyloadImg = () => {
+    if (window.lazyLoadInstance) {
+      window.lazyLoadInstance.update();
+      return;
+    }
     window.lazyLoadInstance = new LazyLoad({
-      elements_selector: "img",
-      threshold: 0,
+      elements_selector: "img[data-lazy-src]",
+      threshold: 600,
       data_src: "lazy-src",
     });
   };
