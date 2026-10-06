@@ -740,7 +740,8 @@ const anzhiyu = {
   },
   // 取消加载动画
   hideLoading: function () {
-    document.getElementById("loading-box").classList.add("loaded");
+    const loadingBox = document.getElementById("loading-box");
+    if (loadingBox) loadingBox.classList.add("loaded");
   },
   // 将音乐缓存播放
   cacheAndPlayMusic() {
